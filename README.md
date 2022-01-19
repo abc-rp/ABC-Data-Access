@@ -1,5 +1,5 @@
 # ABC-RP Data Access
-This page will explain how to access the building data stored in the ABC-RP data lake. Before you can access the data you will need to acquire a Google Service account key file. Please submit a data access request via the [ABC-RP Data Application Form](https://www.github.com "ABC-RP").
+This page will explain how to access the building data stored in the ABC-RP data lake. Before you can access the data you will need to acquire a Google Service account key file. Please submit a data access request via the [ABC-RP Data Application Form](https://abc-rp.com/abc-rp-data-access-request/ "ABC-RP").
 ## Data structure
 
 The raw building data is held in a Google BigQuery table. The supporting metadata is held in a Google Sheet. API access to both Sheets and BigQuery is required to make use of the data. Please see Python examples of this in the PythonExample folder.
