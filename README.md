@@ -11,7 +11,7 @@ Data stored in the Big Query data lake is very lightweight. The data stored is a
 
 | Field name    | Type            | Example |
 | :------------ |:---------------| :-----|
-| uuid          | STRING| 164a9a94460a4f06aaea555f08fb6455|
+| pointuid          | STRING| 164a9a94460a4f06aaea555f08fb6455|
 | instance      | STRING        |   csv |
 | application   | STRING        |    developer-test|
 | timestamp     | TIMESTAMP       |    2021-12-18 09:55:00 UTC |
@@ -19,25 +19,34 @@ Data stored in the Big Query data lake is very lightweight. The data stored is a
 
 **Here is an example of the supporting metadata in Sheets:**
 
-| uuid   | Device           | Building |Sensor | Point Name |Serves | Section |
-| :------------ |:---------------| :-----|:-----|:-----|:-----|:-----|
-| 164a9a94460a4f06aaea555f08fb6455         | 1/1/BTH/W| Plot 1| MTS-01 |air_temperature_sensor|Kitchen|GF_KITCHEN|
+| Field name    |  Example |
+| :------------ |:-----|
+| pointuid         | 164a9a94460a4f06aaea555f08fb6455|
+| Device      | 1/1/BTH/W |
+| Building   | Plot 1 |
+| Sensor      | MTS-01 |
+| Point Name  | air_temperature_sensor|
+| Serves  | Kitchen|
+| Section   |GF_KITCHEN|
 
-The BigQuery table has millions of entries, each with a UUID that corresponds to an entry in a Sheet.
+Additional data may be added to the Sheets metadata as it becomes available.
 
-**Note: The UUID of the example BigQuery entry above is the same as the example Sheets entry. Using the combination of the above data we can access the kitchen temperature readings of the building on Plot 1. To do so we would query BigQuery for all UUID's of 164a9a94460a4f06aaea555f08fb6469.**
+
+The BigQuery table has millions of entries, each with a pointuid that corresponds to an entry in a Sheet.
+
+**Note: The pointuid of the example BigQuery entry above is the same as the example Sheets entry. Using the combination of the above data we can access the kitchen temperature readings of the building on Plot 1. To do so we would query BigQuery for all pointuid's of 164a9a94460a4f06aaea555f08fb6469.**
 
 Shown here is a simple SQL example query, requesting a single temperature reading from the kitchen.
 
 ```
-SELECT * FROM `udmi.telemetry_main` WHERE uuid = "164a9a94460a4f06aaea555f08fb6469" LIMIT 1
+SELECT * FROM `udmi.telemetry_main` WHERE pointuid = "164a9a94460a4f06aaea555f08fb6469" LIMIT 1
 ```
 
-By combing the UUID's found in the Sheets, we can build complex SQL statements to access building data. The following example retrieves the lowest temperature recorded in the kitchen of the building in plot 1 between the 15th and 22nd of January 2022.
+By combing the pointuid's found in the Sheets, we can build complex SQL statements to access building data. The following example retrieves the lowest temperature recorded in the kitchen of the building in plot 1 between the 15th and 22nd of January 2022.
 
 ```
 SELECT * FROM `udmi.telemetry_main` 
-WHERE uuid = "164a9a94460a4f06aaea555f08fb6469" AND timestamp BETWEEN "2022-01-15" AND "2022-01-22"  
+WHERE pointuid = "164a9a94460a4f06aaea555f08fb6469" AND timestamp BETWEEN "2022-01-15" AND "2022-01-22"  
 ORDER BY timestamp ASC 
 LIMIT 1
 ```
@@ -46,4 +55,6 @@ When a Service Account key has been provided, you can access the [BigQuery API](
 
 We have provided Python examples in the PythonExample folder. 
 
-Note: We have not provided a Service Account key in the PythonExample folder. A Service Account key and list of final instructions will be provided once you have been approved for data access. 
+We have not provided a Service Account key in the PythonExample folder. A Service Account key and list of final instructions will be provided once you have been approved for data access. 
+
+**Note: The Service Accounts have data access frequency caps in place. The data should be accessed and stored on your platform if you are intending to access the same data frequently, such as in a web app.**
