@@ -1,21 +1,14 @@
 # ABC-RP Data Access
-This page will explain how to access the building data stored in the ABC-RP data lake. Before you can access the data you will need to acquire a Google Service account key file. Please submit a data access request via the [ABC-RP Data Application Form](https://abc-rp.com/abc-rp-data-access-request/ "ABC-RP").
+This page will explain how to access the building data stored in the ABC-RP data lake. Before you can access the data you will need to acquire a Google Service account key file. Please submit a data access request via the [ABC-RP Data Application Form](https://www.github.com "ABC-RP").
 ## Data structure
 
 The raw building data is held in a Google BigQuery table. The supporting metadata is held in a Google Sheet. API access to both Sheets and BigQuery is required to make use of the data. Please see Python examples of this in the PythonExample folder.
 
 Data stored in the Big Query data lake is very lightweight. The data stored is anonymized. Only those with access to the relevant Google Sheet will be able to associate data within the data lake to a particular property. 
 
-**Here is an example of an entry from the BigQuery data lake:**
+**The metadata for each data point is stored once and associated with many entries in the BigQuery data lake:**
 
-
-| Field name    | Type            | Example |
-| :------------ |:---------------| :-----|
-| pointuid          | STRING| 164a9a94460a4f06aaea555f08fb6455|
-| instance      | STRING        |   csv |
-| application   | STRING        |    developer-test|
-| timestamp     | TIMESTAMP       |    2021-12-18 09:55:00 UTC |
-| presentvalue  | NUMERIC       |    22.5|
+<img width="500" alt="One to many" src="https://abc-rp.com/wp-content/uploads/2022/01/onetomany.png">
 
 **Here is an example of the supporting metadata in Sheets:**
 
@@ -28,6 +21,19 @@ Data stored in the Big Query data lake is very lightweight. The data stored is a
 | Point Name  | air_temperature_sensor|
 | Serves  | Kitchen|
 | Section   |GF_KITCHEN|
+
+**Here is an example of an entry from the BigQuery data lake:**
+
+
+| Field name    | Type            | Example |
+| :------------ |:---------------| :-----|
+| pointuid          | STRING| 164a9a94460a4f06aaea555f08fb6455|
+| instance      | STRING        |   csv |
+| application   | STRING        |    developer-test|
+| timestamp     | TIMESTAMP       |    2021-12-18 09:55:00 UTC |
+| presentvalue  | NUMERIC       |    22.5|
+
+
 
 Additional data may be added to the Sheets metadata as it becomes available.
 

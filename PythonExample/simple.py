@@ -1,4 +1,4 @@
-# Rquired modules can typically be installed using:
+# Required modules can typically be installed using:
 
 # pip install --upgrade google-cloud-storage
 # pip install --upgrade google-api-python-client
@@ -55,7 +55,7 @@ def getData(building, pointname, serves):
     
     print("Found UUID in Sheet: ", thisUUID )
 
-    # The correct Goolge BigQuery table ID will be supplied once a data request is approved
+    # The correct Google BigQuery table ID will be supplied once a data request is approved
     
     query_job = client.query(
         """
