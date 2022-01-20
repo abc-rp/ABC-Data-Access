@@ -22,6 +22,8 @@ Data stored in the Big Query data lake is very lightweight. The data stored is a
 | Serves  | Kitchen|
 | Section   |GF_KITCHEN|
 
+This is the metadata for the kitchen temperature of the house on Plot 1.
+
 **Here is an example of an entry from the BigQuery data lake:**
 
 
@@ -33,26 +35,27 @@ Data stored in the Big Query data lake is very lightweight. The data stored is a
 | timestamp     | TIMESTAMP       |    2021-12-18 09:55:00 UTC |
 | presentvalue  | NUMERIC       |    22.5|
 
-
+The above data lake entry shows the temperature in the kitchen of the house on plot 1 on the 18th of December 2021.
 
 Additional data may be added to the Sheets metadata as it becomes available.
 
 
 The BigQuery table has millions of entries, each with a pointuid that corresponds to an entry in a Sheet.
 
-**Note: The pointuid of the example BigQuery entry above is the same as the example Sheets entry. Using the combination of the above data we can access the kitchen temperature readings of the building on Plot 1. To do so we would query BigQuery for all pointuid's of 164a9a94460a4f06aaea555f08fb6469.**
+The pointuid of the example BigQuery entry above is the same as the example Sheets entry. Using the combination of the above data we can access the kitchen temperature readings of the building on Plot 1. 
 
-Shown here is a simple SQL example query, requesting a single temperature reading from the kitchen.
+If we searched the data lake for all pointuid's of 164a9a94460a4f06aaea555f08fb6455 we would retrieve all the temperature readings of the kitchen of the house on Plot 1. This is shown in the first SQL example below.
+
 
 ```
-SELECT * FROM `udmi.telemetry_main` WHERE pointuid = "164a9a94460a4f06aaea555f08fb6469" LIMIT 1
+SELECT * FROM `udmi.telemetry_main` WHERE pointuid = "164a9a94460a4f06aaea555f08fb6455"
 ```
 
 By combing the pointuid's found in the Sheets, we can build complex SQL statements to access building data. The following example retrieves the lowest temperature recorded in the kitchen of the building in plot 1 between the 15th and 22nd of January 2022.
 
 ```
 SELECT * FROM `udmi.telemetry_main` 
-WHERE pointuid = "164a9a94460a4f06aaea555f08fb6469" AND timestamp BETWEEN "2022-01-15" AND "2022-01-22"  
+WHERE pointuid = "164a9a94460a4f06aaea555f08fb6455" AND timestamp BETWEEN "2022-01-15" AND "2022-01-22"  
 ORDER BY timestamp ASC 
 LIMIT 1
 ```
