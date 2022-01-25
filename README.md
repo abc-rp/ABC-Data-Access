@@ -27,8 +27,8 @@ Only those with access to the relevant Google Sheet will be able to associate da
 | :------------ |:-----|
 | pointuid         | 5a6e50d0b61d57400cf4555021a8ece9591f7f97027a4f54a260a4334af3d18c |
 | device      | JE-STH-BLD1_TPS-75 |
-| building   | JE-STH-BLD1 |
 | pointname  | zone_air_temperature_sensor |
+| units  | degrees_celsius |
 | section   | GF_KITCHEN |
 
 This is the metadata for the ground floor kitchen temperature in the house `JE-STH-BLD1`.
