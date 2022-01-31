@@ -14,7 +14,7 @@ from google.oauth2.credentials import Credentials
 
 # The Service Account JSON file will be supplied once a data request is approved.
 
-key_path = ""
+key_path = "** Path to provided JSON file **"
 
 credentialsSheets = service_account.Credentials.from_service_account_file(
     key_path,
@@ -33,7 +33,7 @@ client = bigquery.Client(
 
 # The Google Sheet ID will be supplied once a data request is approved
 
-SAMPLE_SPREADSHEET_ID = ''
+SAMPLE_SPREADSHEET_ID = '** ID of required META Google Sheet **'
 SAMPLE_RANGE_NAME = 'A:G'
 service = build('sheets', 'v4', credentials=credentialsSheets)
 sheet = service.spreadsheets()
@@ -59,7 +59,7 @@ def getData(building, pointname, serves):
     
     query_job = client.query(
         """
-        SELECT * FROM `udmi.telemetry_main` WHERE uuid = '""" + str(thisUUID[0]) + """'
+        SELECT * FROM `** Provided BigQuery Table Path **` WHERE uuid = '""" + str(thisUUID[0]) + """'
         LIMIT 1"""
     )
     
