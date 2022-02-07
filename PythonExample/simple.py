@@ -59,7 +59,7 @@ def getData(building, pointname, serves):
     
     query_job = client.query(
         """
-        SELECT * FROM `** Provided BigQuery Table Path **` WHERE uuid = '""" + str(thisUUID[0]) + """'
+        SELECT * FROM `** Provided BigQuery Table Path **` WHERE pointuid = '""" + str(thisUUID[0]) + """'
         LIMIT 1"""
     )
     
