@@ -1,6 +1,6 @@
 # Command line example, to retrieve the latest value for a given pointuid.
 # To be used as: python3 commandline.py *pointuid*
-# Example: python3 commandline.py 102eb94ae5c74f5c83c50ba78e43425a0
+# Example: python3 commandline.py 2cdc1a822423403a8e56a63f24980fbf
 
 # Required modules can typically be installed using:
 
